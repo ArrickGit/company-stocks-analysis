@@ -1,0 +1,9 @@
+- Briefly describe your process for completing the project from start to finish. 
+Include details on assumptions made and key decisions taken / tradeoffs made for each step (if relevant).
+When I first started the assessment, I took down some notes on what each defition mean such as ticker, historical stock prices, major stock price movement.
+I decided to let the user defined its own major stock price movement wiht a simple input box. as for the price difference i used `(yesterday_price + todays_price)/yesterday price * 100` to get its percentage
+Had to go through its workflow on how the output will be created.
+- Are you happy with your solution? Why or why not?
+- What would you do differently if you got to do this over again?
+- Did you get stuck anywhere? How’d you get unstuck?
+ 

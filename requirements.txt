@@ -1,0 +1,7 @@
+fastapi
+yfinance
+pandas
+requests
+groq
+python-dotenv
+uvicorn
