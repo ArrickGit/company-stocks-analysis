@@ -3,7 +3,27 @@ Include details on assumptions made and key decisions taken / tradeoffs made for
 When I first started the assessment, I took down some notes on what each defition mean such as ticker, historical stock prices, major stock price movement.
 I decided to let the user defined its own major stock price movement wiht a simple input box. as for the price difference i used `(yesterday_price + todays_price)/yesterday price * 100` to get its percentage
 Had to go through its workflow on how the output will be created.
+Started off with letting user choose stock name, user select start and end dates, user then input their own tresholds, user press on analyse stock, 
+backend uses finnhub api to obtain articles, returns json of data such as stock movement, start, end price, etc.
+
 - Are you happy with your solution? Why or why not?
+No not really. I felt I could have added alot more. For instances, I could have tackled the medium difficulty question as I found out closer to the end that finnhub has an endpoint called /stock/peers so they are able to find its peers and link it to the difference.
+I also felt that the UI could have been done alot better, instead of displaying the full json result, I could have made it display in a nicer table format. Maybe like | Stock | Movement | No. of Articles | Highest Price | Lowest Price |
+With a paid llm, I could have sent more data into the model so I could get a better output, but then again having lesser data and still producing an output with relevance will help save cost in the long run.
+But on the other hand, wiht a paid llm and the abaility to send larger token request will result in more news article being sent giving us a more detailed explanation.
+
 - What would you do differently if you got to do this over again?
+I would have looked at finnhub api endpoints alot more carefully and filter out endpoints that are useful in my usecase.
+I would also have not gathered as much data as initiailly wanted as I did not expect the free llm key to have a small token limit, saving me time in deciding what data to capture.
+I would also have thought of the workflow first instead of worrying about the financial concepts and researching irrelevant fomulars such as implied volatility 
+
 - Did you get stuck anywhere? How’d you get unstuck?
+I got stuck when finnhub somehow did not get news for certain date range. The issue was that I was requesting 1 large finnhub request for a set of date range, and the old loop would overwrite the result.
+Updated it so that finnhub request in smaller batches such as doing 1 small request per movement found, it then writes the articles found to each movement.
+
+Another issue was that grop could not generate answer due to large token because it was initially sending the entire json file as context which result in it having too much tokens
+Fixed it by sending lesser data like only movement data and percentage changes and only 3 news articles. Shortening summary to 300 characters and removing url volumn and other unnecessary data.
+
+Lastly, sometimes no news might be found for data because of the 5 day windows i set.
+Found out that it could be because smaller companies would receive lesser daily coverage which result in empty news
  
